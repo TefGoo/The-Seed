@@ -100,4 +100,27 @@ public class SeedCollision : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
-}
+
+    public bool RecuperarVida()
+    {
+        // Si ya tenemos la vida al máximo, no hacemos nada y devolvemos "false"
+        if (vidaActual >= vidaMaxima)
+        {
+            return false;
+        }
+
+        // Si nos falta vida:
+        // 1. Encendemos el corazón que estaba apagado (El que corresponde a la vida actual)
+        // Ejemplo: Si tengo 2 vidas (índice 0 y 1), el siguiente es el índice 2.
+        if (vidaActual < iconosVidas.Length)
+        {
+            iconosVidas[vidaActual].SetActive(true);
+        }
+
+        // 2. Sumamos la vida numérica
+        vidaActual++;
+        Debug.Log("¡Vida recuperada! Total: " + vidaActual);
+
+        return true; // Devolvemos "true" para confirmar que sí se curó
+    }
+} 
